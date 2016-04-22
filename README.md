@@ -42,7 +42,8 @@ Backend modules handle processing and parsing reports.
 * [Data::Uploads](https://github.com/barbie/cpan-testers-data-uploads)
     * The Uploads database contains basic information about the history
       of CPAN, including the release dates of all CPAN and BackPAN
-      modules, direct from PAUSE.
+      modules, direct from PAUSE. This is generated directly from the
+      local CPAN Testers CPAN and BackPAN mirrors.
 * [Data::Uploads::Mailer](https://github.com/barbie/cpan-testers-data-uploads-mailer)
     * Send e-mails when invalid distributions are uploaded to CPAN
 * [Data::Release](https://github.com/barbie/CPAN-Testers-Data-Release)
