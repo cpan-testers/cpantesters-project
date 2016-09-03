@@ -7,6 +7,17 @@ involved](https://github.com/cpan-testers/cpantesters-project/issues)
 
 ## Project Overview
 
+The CPAN Testers project is an effort to ensure the quality and
+stability of the packages uploaded to [CPAN, the Comprehensive Perl
+Archive Network](http://www.cpan.org), the official repository for
+sharing Perl libraries and applications.
+
+Contributers submit test reports by downloading content from CPAN and
+running the included test suite. These test reports are sent to
+a repository called Metabase. Reports are then read from Metabase, and
+parsed for important statistics which are saved to the CPAN Testers
+database. This database has a web application where authors can see the
+test reports for their distributions.
 
 ## Repositories
 
@@ -16,7 +27,8 @@ These are the repositories that are meta-managed by this repository.
 
 Metabase is the primary source for CPAN Testers reports. Reporters write
 directly to the Metabase to send in reports. This replaces the original
-reports which were sent via e-mail.
+reports which were sent via e-mail, and used a Usenet group as the
+canonical repository.
 
 * [Metabase](https://github.com/rjbs/metabase)
     * The main Metabase repository.
