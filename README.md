@@ -5,6 +5,9 @@ A meta-project for tracking CPAN Testers project goals. [See the Issues
 for project tracking or to see how you can get
 involved](https://github.com/cpan-testers/cpantesters-project/issues)
 
+[See the project roadmap for future plans and to give input on the
+project planning](http://github.com/cpan-testers/cpantesters-project/master/ROADMAP.md)
+
 ## Project Overview
 
 The CPAN Testers project is an effort to ensure the quality and
