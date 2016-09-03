@@ -6,7 +6,7 @@ for project tracking or to see how you can get
 involved](https://github.com/cpan-testers/cpantesters-project/issues)
 
 [See the project roadmap for future plans and to give input on the
-project planning](http://github.com/cpan-testers/cpantesters-project/master/ROADMAP.md)
+project planning](https://github.com/cpan-testers/cpantesters-project/tree/master/ROADMAP.md)
 
 ## Project Overview
 
