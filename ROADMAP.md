@@ -33,6 +33,19 @@
       in-place, but CPAN Testers does not have its own monitoring
     * CPAN Testers has a lot of moving parts that each need monitoring
       for stability
+
+* Metrics and Statistics
+    * The statistics pages on
+      <http://stats.cpantesters.org/osmatrix-month.html> are not being
+      updated.
+    * More research and documentation on this problem is needed
+        * How are statistics being generated?
+        * Where are statistics being stored?
+        * How are statistics reports being generated?
+
+### Future Plans
+
+* Monitoring
     * Possible Technologies
         * Icinga2
             * Based on / forked from Nagios, it has a
@@ -44,14 +57,7 @@
         * Build a Rex plugin to deploy the monitoring tool and automate
           building the monitoring configuration.
 
-* Metrics and Statistics
-    * The statistics pages on
-      <http://stats.cpantesters.org/osmatrix-month.html> are not being
-      updated.
-    * More research and documentation on this problem is needed
-        * How are statistics being generated?
-        * Where are statistics being stored?
-        * How are statistics reports being generated?
+* Statistics
     * Possible Technologies
         * Graphite
             * Python based statistics database
@@ -285,6 +291,36 @@ XXX
 ### Requirements
 
 XXX
+
+### Current Problems
+
+XXX
+
+### Future Plans
+
+XXX
+
+## Testers
+
+* Status: <span style="color: yellow">In Development</span>
+
+### Requirements
+
+* A way to send in test reports from any CPAN client
+    * cpan
+        * CPAN::Reporter
+    * cpanplus
+        * Bundle::CPANPLUS::Test::Reporter?
+        * Task::CPANPLUS::Metabase?
+    * cpanm
+        * cpanm-reporter
+
+* A way to set up a system to automatically run tests on CPAN modules
+    * Run tests on newly-uploaded distributions
+        * From release to report to CPAN Testers webapp should be as
+          fast as possible
+    * Run tests on all of CPAN
+        * Useful to test new Perls against the existing CPAN
 
 ### Current Problems
 
