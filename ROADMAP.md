@@ -1,7 +1,7 @@
 
 # CPAN Testers Project Roadmap
 
-## Planning and Documentation
+## Operations and Documentation
 
 * Status: <span style="color: yellow">In Development</span>
 
@@ -13,6 +13,73 @@
     * Documenting the current application and deployment process
 * [cpantesters-schema](https://github.com/cpan-testers/cpantesters-schema)
     * Documenting the current database
+
+### Requirements
+
+* Monitoring
+    * XXX
+* Statistics
+    * XXX
+* Deployment
+    * Deployment should be automated
+    * A QA/Staging environment should be set up
+    * The deployment should be able to create a development server in
+      a VM
+
+### Current Problems
+
+* Monitoring
+    * Various users have various monitoring scripts of their own
+      in-place, but CPAN Testers does not have its own monitoring
+    * CPAN Testers has a lot of moving parts that each need monitoring
+      for stability
+    * Possible Technologies
+        * Icinga2
+            * Based on / forked from Nagios, it has a
+              well-documented set of configuration, easy command line
+              tools for automation and deployment, and a nice web GUI
+              application for viewing system status
+        * Others. Need to evaluate.
+    * Opportunities
+        * Build a Rex plugin to deploy the monitoring tool and automate
+          building the monitoring configuration.
+
+* Metrics and Statistics
+    * The statistics pages on
+      <http://stats.cpantesters.org/osmatrix-month.html> are not being
+      updated.
+    * More research and documentation on this problem is needed
+        * How are statistics being generated?
+        * Where are statistics being stored?
+        * How are statistics reports being generated?
+    * Possible Technologies
+        * Graphite
+            * Python based statistics database
+            * Easy configuration and maintenance
+            * Remote access over the network
+            * Performs well enough for large organizations (which we are
+              not)
+            * Works with Kibana for dashboards and graphs
+            * Supports automated aggregations
+            * Does not support tagging metrics for later aggregation
+              queries
+        * RRDTool
+            * Fast, native round-robin databases
+            * Very simple data layer
+            * Will need a model layer on top to route incoming stats to
+              the right database file
+            * Will need a remote access layer on top to allow
+              centralized statistics storage
+            * RRDTool's limitations is why Graphite exists
+        * OpenTSDB
+            * Java/Hadoop-based time series database
+            * Very fast
+            * Works with Kibana for dashboards and graphs
+            * Supports tagging metrics for running queries on different
+              tags
+    * Opportunities
+        * Build a Rex plugin to deploy the metrics database and automate
+          building the configuration
 
 ## Backend: Data Processing (ETL)
 
