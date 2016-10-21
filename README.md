@@ -64,6 +64,9 @@ Backend modules handle processing and parsing reports.
 * [Data::Release](https://github.com/barbie/CPAN-Testers-Data-Release)
     * Create a standalone database from the release summary information.
 
+[See detailed documentation about these processes and how they are
+used](https://github.com/cpan-testers/cpantesters-project/tree/master/BACKEND.md)
+
 #### Frontend
 
 Frontend modules handle the web application.
