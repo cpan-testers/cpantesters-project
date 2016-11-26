@@ -11,8 +11,6 @@
     * Documenting the project plan and ongoing issues
 * [cpantesters-deploy](https://github.com/cpan-testers/cpantesters-deploy)
     * Documenting the current application and deployment process
-* [cpantesters-schema](https://github.com/cpan-testers/cpantesters-schema)
-    * Documenting the current database
 
 ### Requirements
 
@@ -116,6 +114,8 @@
 ## Backend: Data Processing (ETL)
 
 * Status: <span style="color: blue">Planning</span>
+* Repositories:
+    * [cpantesters-schema](https://github.com/cpan-testers/cpantesters-schema)
 
 ### Requirements
 
@@ -230,7 +230,8 @@ distribution version, for efficient consumption by other systems.
 
 ## Data APIs
 
-* Status: <span style="color: blue">Planning</span>
+* Status: <span style="color: yellow">In Development</span>
+* Repository: [cpantesters-api](https://github.com/cpan-testers/cpantesters-api)
 
 ### Requirements
 
@@ -276,7 +277,7 @@ and local caching should be used.
           API before we can shut this down
           * <https://github.com/cpan-testers/cpantesters-project/issues/9>
 
-### Future Plans
+### Completed Tasks
 
 * Provide a web API to retrieve summary data
     * Backend will generate and store the summary data locally
@@ -293,6 +294,18 @@ and local caching should be used.
             * An specification format for JSON APIs which helps document
               and validate
             * [Mojolicious::Plugin::OpenAPI](http://metacpan.org/pod/Mojolicious::Plugin::OpenAPI)
+
+### Future Plans
+
+* Provide a web API to build CPAN Testers Matrix-style reports
+    * <https://github.com/cpan-testers/cpantesters-project/issues/8>
+    * API should provide possible axes. User should be able to choose
+      1-3 axes.
+        * Possible axes
+            * Distribution version
+            * Perl version
+            * OS name
+        * In the future, we may provide other axes
 
 ## Web App
 

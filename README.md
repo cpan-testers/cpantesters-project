@@ -51,6 +51,9 @@ and the web application that displays reports and statistics.
 
 Backend modules handle processing and parsing reports.
 
+* [cpantesters-schema](https://github.com/cpan-testers/cpantesters-schema)
+    * This is a [DBIx::Class](http://metacpan.org/pod/DBIx::Class)
+      schema for the CPAN Testers database.
 * [Data::Generator](https://github.com/barbie/cpan-testers-data-generator)
     * This module handles grabbing reports from the Metabase and inserting
       them into the correct places in the CPANTesters report database
@@ -71,6 +74,8 @@ used](https://github.com/cpan-testers/cpantesters-project/tree/master/BACKEND.md
 
 Frontend modules handle the web application.
 
+* [cpantesters-api](https://github.com/cpan-testers/cpantesters-api)
+    * This is a JSON API on to CPAN Testers data.
 * [WWW::Reports](https://github.com/barbie/cpan-testers-www-reports)
   * This handles the [main reports website
     (cpantesters.org)](http://cpantesters.org), which allows for viewing
@@ -112,6 +117,10 @@ These repositories are related to the CPANTesters application.
 * [cpantesters-deploy](http://github.com/cpan-testers/cpantesters-deploy)
     * Automated deployment for the CPANTesters servers, along with
       a special deployment for development virtual machines.
+    * This project handles the initial deployment of a machine,
+      installing OS packages, setting up Perl, and setting up a user to
+      run CPAN Testers processes. Individual projects can deploy
+      themselves.
 
 ### Reporters
 
