@@ -76,7 +76,11 @@
               well-documented set of configuration, easy command line
               tools for automation and deployment, and a nice web GUI
               application for viewing system status
-        * Others. Need to evaluate.
+        * Grafana
+            * Has a new, built-in alerting/monitoring tool with easy
+              configuration from the Grafana front-end
+            * Can use Graphite as a back-end, which is something
+              I know how to do, and is robust and scalable
     * Opportunities
         * Build a Rex plugin to deploy the monitoring tool and automate
           building the monitoring configuration.
@@ -89,7 +93,7 @@
             * Remote access over the network
             * Performs well enough for large organizations (which we are
               not)
-            * Works with Kibana for dashboards and graphs
+            * Works with Grafana for dashboards and graphs
             * Supports automated aggregations
             * Does not support tagging metrics for later aggregation
               queries
@@ -179,6 +183,12 @@ distribution version, for efficient consumption by other systems.
             * Mercury currently has no authentication, which would be
               necessary to ensure only our job workers are available in
               the worker pool
+    * Progress:
+        * The [CPAN Testers API](http://api.cpantesters.org) currently
+          uses Mercury to do some simple notifications. This Mercury
+          daemon could be used to notify job runners.
+            * The API site must provide authentication for internal job
+              runners to ensure only authorized backends can run jobs
 
 * ETL Framework
     * It would be nice if there was an existing ETL framework we could
@@ -227,6 +237,13 @@ distribution version, for efficient consumption by other systems.
               <https://rt.cpan.org/Ticket/Display.html?id=117475>
             * No public repository for collaboration
               <https://rt.cpan.org/Ticket/Display.html?id=117473>
+    * Progress:
+        * I've built
+          [Beam::Runner](http://metacpan.org/pod/Beam::Runner) which
+          provides a nice framework for configuring jobs to run. It's
+          possible we could punt on building/using a full ETL framework
+          and just migrate what we have now to this format until we know
+          more about the ETL's requirements.
 
 ## Data APIs
 
@@ -352,17 +369,71 @@ and local caching should be used.
 
 * Status: <span style="color: red">Under Discussion</span>
 
+The Metabase (<http://metabase.cpantesters.org>) is the highly-available
+document storage for incoming test reports.
+
 ### Requirements
 
-XXX
+* Highly-available
+    * I cannot stress this enough
+* Arbitrary structured data
+    * There is a lot of data about the tester's machine and setup that
+      is contained in reports, over and above the full text of the
+      report itself.
+    * Being able to add more structured data to reports is important, as
+      parsing data out of the full text reports is nigh-impossible
 
 ### Current Problems
 
-XXX
+* It includes its own API separate from all other CPAN Testers APIs
+* It is fairly complicated internally for what it's being used for
+    * The needs for the flexibility and expansion never materialized, so
+      now it's a bit more complex than CPAN Testers really needs
+* It is hosted on Amazon SimpleDB
+    * Which charges per-query
+    * And has an annoying limit which we reach about once per year which
+      involves manually updating a bunch of configuration files
+    * But, it is highly-available!
+    * Except, the API in front of it is a single point of failure, yet
+      has been working just fine
+* There is a whole copy of Metabase in the CPAN Testers MySQL
+    * Because of Amazon SimpleDB being costly to query, we keep a whole
+      copy locally
+    * We don't need this copy if we have just one we can use immediately
+    * Populating this copy takes time and increases the latency between
+      incoming test reports and consumable CPAN Testers data.
+    * This whole copy in the CPAN Testers MySQL is formatted
+      inefficiently and viewing individual reports is the single biggest
+      resource problem on the CPAN Testers web app
+        * This page occasionally results in the server going down due to
+          overload
 
 ### Future Plans
 
-XXX
+* Integrate the Metabase API into the [CPAN Testers
+  API](http://api.cpantesters.org)
+    * This will reduce the amount of things we need to maintain
+    * The API app can be made highly-available if needed
+        * With HAProxy, even just the Metabase parts could be made such
+* Move the Metabase to a locally-hosted document store
+    * Possible Technologies:
+        * ElasticSearch
+            * I've hosted Elastic before. It's easy to set up, and
+              performs well out of the box.
+            * It's scalable, with new nodes easily joining the cluster
+              and distributing data and load
+            * It could be used to perform full-text searches on test
+              reports, opening us up to more features for CPAN Testers
+            * ElasticSearch has other roles as a logging database and
+              monitoring system
+        * MongoDB
+            * I've used MongoDB a while back, and clustering was not as
+              nice as ElasticSearch
+            * Besides (or even because of) that, it is easier to set up
+              than ElasticSearch
+            * Full-text searching is not a key feature
+            * I should research this more, as it's been years since
+              I last looked...
 
 ## Testers
 
